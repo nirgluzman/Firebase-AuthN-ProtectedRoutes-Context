@@ -25,7 +25,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   // Sign out users
-  const logout = () => {
+  const logoutUser = () => {
     return signOut(auth);
   };
 
@@ -39,7 +39,7 @@ export const AuthContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, createUser, loginUser, logout }}>
+    <UserContext.Provider value={{ user, createUser, loginUser, logoutUser }}>
       {children}
     </UserContext.Provider>
   );
