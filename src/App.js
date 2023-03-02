@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import Account from "./components/Account";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -11,9 +12,16 @@ function App() {
         Firebase Auth & Context
       </h1>
       <Routes>
-        <Route path="/" element={<Signin />}></Route>
-        <Route path="/signup" element={<Signup />}></Route>
-        <Route path="/account" element={<Account />}></Route>
+        <Route path="/" element={<Signin />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/account"
+          element={
+            <ProtectedRoute>
+              <Account />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </div>
   );
