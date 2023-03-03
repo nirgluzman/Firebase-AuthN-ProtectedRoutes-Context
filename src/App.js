@@ -9,7 +9,7 @@ function App() {
   return (
     <div>
       <h1 className="text-center text-3xl font-bold">
-        Firebase Auth & Context
+        Firebase AuthN with Google Sign-in
       </h1>
       <Routes>
         <Route path="/" element={<Signin />} />

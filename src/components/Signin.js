@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import { GoogleButton } from "react-google-button";
+
 import { UserAuth } from "../context/AuthContext";
 
 const Signin = () => {
@@ -11,7 +13,7 @@ const Signin = () => {
 
   const navigate = useNavigate();
 
-  const { loginUser } = UserAuth();
+  const { loginUser, googleLogin } = UserAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,6 +21,16 @@ const Signin = () => {
 
     try {
       await loginUser(email, password);
+      navigate("/account");
+    } catch (err) {
+      setError(err.message);
+      console.log(err.message);
+    }
+  };
+
+  const handleGoogleSignin = async () => {
+    try {
+      await googleLogin();
       navigate("/account");
     } catch (err) {
       setError(err.message);
@@ -58,6 +70,9 @@ const Signin = () => {
           Sign In
         </button>
       </form>
+      <div className="max-w-[240px] m-auto py-8">
+        <GoogleButton type="dark" onClick={handleGoogleSignin} />
+      </div>
     </div>
   );
 };
